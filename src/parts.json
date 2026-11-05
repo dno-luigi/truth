@@ -1,0 +1,328 @@
+{
+ "component": "truth",
+ "derived_from": "bundle/worker.js 582fa128ff3b15d2b65beaeb49b612a06d8d59691fdb22c9f8f0ca9776fc0ce6",
+ "parts": [
+  {
+   "file": "000-__defProp.js",
+   "start_line": 1,
+   "end_line": 1,
+   "bytes": 39,
+   "sha256": "81874a21f1cced9efaff3a87f11739d0dddeaf3b1a5082b31da6d2110ef2d95f"
+  },
+  {
+   "file": "001-__name.js",
+   "start_line": 2,
+   "end_line": 3,
+   "bytes": 91,
+   "sha256": "230b8b22b74b3b090761ab075c29ae0478985d90e29c8afdfca27e3956a2084f"
+  },
+  {
+   "file": "002-preamble.js",
+   "start_line": 4,
+   "end_line": 4,
+   "bytes": 17,
+   "sha256": "edb39066576de2331de8a10bd0948cc9b588c68bc41b14c37d13b12351be5c5c"
+  },
+  {
+   "file": "003-__defProp2.js",
+   "start_line": 5,
+   "end_line": 5,
+   "bytes": 40,
+   "sha256": "f2e4e0e71487d941ea296bf070d4df96aa6c5c376fea440a8175599eeb3cc3bd"
+  },
+  {
+   "file": "004-__name2.js",
+   "start_line": 6,
+   "end_line": 6,
+   "bytes": 126,
+   "sha256": "d6065e5092dc386698dfd187cd49b3fd64d924120d5787121b418c23bd16fa45"
+  },
+  {
+   "file": "005-CORS_HEADERS.js",
+   "start_line": 7,
+   "end_line": 12,
+   "bytes": 233,
+   "sha256": "becacb8c1fc78e4ce1725d77330e4fddf9a641792dc83ea9b4590e9568d5e12f"
+  },
+  {
+   "file": "006-KV_PREFIX_MASTER.js",
+   "start_line": 13,
+   "end_line": 13,
+   "bytes": 34,
+   "sha256": "bd92c3a2c5d80646922fcc02714b15ba2c1d78f6571f5a948f48b3b8e9933a32"
+  },
+  {
+   "file": "007-KV_PREFIX_PROV.js",
+   "start_line": 14,
+   "end_line": 14,
+   "bytes": 37,
+   "sha256": "972ec8696f588550a4e1f700c64e7f69851d791205b95c5431d57bb7f5ecd88e"
+  },
+  {
+   "file": "008-SPEC_VERSION.js",
+   "start_line": 15,
+   "end_line": 15,
+   "bytes": 25,
+   "sha256": "c9d893de6955f4dfcb7c4d846e8840464a5cce9e3f9b05a0f7094822b5d45910"
+  },
+  {
+   "file": "009-normalizeId.js",
+   "start_line": 16,
+   "end_line": 45,
+   "bytes": 1062,
+   "sha256": "ec3b9cd69be9c2b86fcf5f9426769f26796af8b10cdd8030d95bf845e1c15811"
+  },
+  {
+   "file": "010-clampMasterConfidence.js",
+   "start_line": 46,
+   "end_line": 53,
+   "bytes": 300,
+   "sha256": "83bacaa54dec353f6f0f81f08a79d14401191a61f27c64033cc142c5ecf7026b"
+  },
+  {
+   "file": "011-clampProvisionalConfidence.js",
+   "start_line": 54,
+   "end_line": 61,
+   "bytes": 324,
+   "sha256": "4a37e1331f74f991c695d8b7fc87119db1eaaca4b1d0186814b4dca067e064f9"
+  },
+  {
+   "file": "012-canonicalResponse.js",
+   "start_line": 62,
+   "end_line": 100,
+   "bytes": 851,
+   "sha256": "61dca5cba235e54d270c20bea1353068cb4a33259fdd26e6889088f10845d3e1"
+  },
+  {
+   "file": "013-missResponse.js",
+   "start_line": 101,
+   "end_line": 116,
+   "bytes": 317,
+   "sha256": "d834003d77ba1488e6df70a0ad735ce0aa672974ade61fb26e5f293387e235a1"
+  },
+  {
+   "file": "014-logEvent.js",
+   "start_line": 117,
+   "end_line": 135,
+   "bytes": 543,
+   "sha256": "118625e7339c2a0caabe723bcc1a486bf5562fb28c7f6d1a7255fe7a263e232a"
+  },
+  {
+   "file": "015-slugify.js",
+   "start_line": 136,
+   "end_line": 140,
+   "bytes": 245,
+   "sha256": "c4016fdcffc927885aabf0e4bb65745bcd1e9f8ccb30d1930bc34952a277597f"
+  },
+  {
+   "file": "016-masterCandidates.js",
+   "start_line": 141,
+   "end_line": 147,
+   "bytes": 309,
+   "sha256": "233abae9ce9d70d9ea1217920ef69467d0dd18c77c6384752a71aec7ab087c71"
+  },
+  {
+   "file": "017-getMaster.js",
+   "start_line": 148,
+   "end_line": 189,
+   "bytes": 1201,
+   "sha256": "320b2b2fadc38c9572af0ab3344b600e1396d0c212ef21c65833984d29a46a5b"
+  },
+  {
+   "file": "018-matchTokens.js",
+   "start_line": 190,
+   "end_line": 194,
+   "bytes": 230,
+   "sha256": "fdf3294647ed4b7d0a60024641c404fa227509790b177af75ac6d616d95519b5"
+  },
+  {
+   "file": "019-findMasterByText.js",
+   "start_line": 195,
+   "end_line": 241,
+   "bytes": 1543,
+   "sha256": "70dc2aa43225a82325af30d0fcd31c9d0cf15b7fbaf707cbe203e7774099f6af"
+  },
+  {
+   "file": "020-setMaster.js",
+   "start_line": 242,
+   "end_line": 265,
+   "bytes": 767,
+   "sha256": "2c01cc075e8f138b742f139e9d450a82d86f00087c326ad581b9a59d0e5eec32"
+  },
+  {
+   "file": "021-updateMaster.js",
+   "start_line": 266,
+   "end_line": 311,
+   "bytes": 1472,
+   "sha256": "197d4655cab5c069b8e9e9aa70258ffe67986b0bad88e734cbecfe1987f8851c"
+  },
+  {
+   "file": "022-deleteMaster.js",
+   "start_line": 312,
+   "end_line": 319,
+   "bytes": 255,
+   "sha256": "fefc6e30ccbd72a194fdddc872ab2ab3657807240bbc9375dff48067c8195c10"
+  },
+  {
+   "file": "023-getProvisional.js",
+   "start_line": 320,
+   "end_line": 342,
+   "bytes": 679,
+   "sha256": "9cff244b686269b95fb1e6ddf58947ad15c9c0a5dcfbc7431e96ca37fce298a6"
+  },
+  {
+   "file": "024-setProvisional.js",
+   "start_line": 343,
+   "end_line": 375,
+   "bytes": 787,
+   "sha256": "677d4b219340529e99b1594ff0ca0b9eb53e1e49513d916e5276c2be77dcc795"
+  },
+  {
+   "file": "025-getMemory.js",
+   "start_line": 376,
+   "end_line": 392,
+   "bytes": 526,
+   "sha256": "950e1e194ae45df25a0d35245cfa1491e71353b81a0bb12eff2fe43f1ba441c5"
+  },
+  {
+   "file": "026-updateProvisional.js",
+   "start_line": 393,
+   "end_line": 443,
+   "bytes": 1534,
+   "sha256": "91794eb0ddc84ed6b857ead808c0c376a5bbe8d089cec709b343a7bdb8c074f7"
+  },
+  {
+   "file": "027-deleteProvisional.js",
+   "start_line": 444,
+   "end_line": 451,
+   "bytes": 275,
+   "sha256": "3b06398b89ac52e4a1ec80e8b2604fbf5d6255b8143dec0a23d427c8ff4894be"
+  },
+  {
+   "file": "028-queryProvisionals.js",
+   "start_line": 452,
+   "end_line": 473,
+   "bytes": 758,
+   "sha256": "021b95ec574df6e69a15bcd5353715b6204fbaf2396e990fbfd5dfea941e7a19"
+  },
+  {
+   "file": "029-requestCandidateFromProxy.js",
+   "start_line": 474,
+   "end_line": 512,
+   "bytes": 1262,
+   "sha256": "d9ce0147a7c8395ebcef9bf7ac04bd62ea280b3190ff257f2970159ba54ee14a"
+  },
+  {
+   "file": "030-ADMIN_WRITE_PATHS.js",
+   "start_line": 513,
+   "end_line": 520,
+   "bytes": 237,
+   "sha256": "8ac10afe908cf734ff57917941f41cc550af5cf372ab0bc60f468ac5a37803b6"
+  },
+  {
+   "file": "031-adminRequired.js",
+   "start_line": 521,
+   "end_line": 541,
+   "bytes": 686,
+   "sha256": "3ab9550bb6754697886b0c320798efc091ccfb494b26b05e36aa2977a8a504ca"
+  },
+  {
+   "file": "032-truthHandler.js",
+   "start_line": 542,
+   "end_line": 594,
+   "bytes": 1968,
+   "sha256": "fbac18b25069d2ac96f05c941ace6c9644168a0de5ff52b5cee97380ec7a4b08"
+  },
+  {
+   "file": "033-handleResolve.js",
+   "start_line": 595,
+   "end_line": 806,
+   "bytes": 6349,
+   "sha256": "68b0d96f02ad85a54f3f8917b5cba2d9725c6a35f82436259ca44d8401ef449e"
+  },
+  {
+   "file": "034-handleMasterCreate.js",
+   "start_line": 807,
+   "end_line": 851,
+   "bytes": 1359,
+   "sha256": "76c566c8abf658b81dc2b967cf65edf2a05ae26a53d8e0732ef75d482eecd35c"
+  },
+  {
+   "file": "035-handleMasterUpdate.js",
+   "start_line": 852,
+   "end_line": 919,
+   "bytes": 1948,
+   "sha256": "ef0e203a2ad79e0c98c484f8697b6639296af402dfdbfb447668013ba3547e80"
+  },
+  {
+   "file": "036-handleMasterDelete.js",
+   "start_line": 920,
+   "end_line": 944,
+   "bytes": 816,
+   "sha256": "38f8b004d0cf599ded8ad812037b1c90852612bf4de9d919f2399e89c5f17a2c"
+  },
+  {
+   "file": "037-handleProvisionalUpdate.js",
+   "start_line": 945,
+   "end_line": 998,
+   "bytes": 1533,
+   "sha256": "a66457440bc91108c6b181577d2447e8470d7af9375ecedc9cdb6a41f7b2fcd6"
+  },
+  {
+   "file": "038-handleProvisionalDelete.js",
+   "start_line": 999,
+   "end_line": 1027,
+   "bytes": 918,
+   "sha256": "d772919660f2a2173363d7c402ca72b668eebb739e6adefe1cb6d91c7d55b95e"
+  },
+  {
+   "file": "039-handleProvisionalQuery.js",
+   "start_line": 1028,
+   "end_line": 1045,
+   "bytes": 693,
+   "sha256": "41e3fa19e1e3055c58c7c99bbe75d4b3a8e9039d5db7176d8480ffc3755d0bbd"
+  },
+  {
+   "file": "040-handlePromote.js",
+   "start_line": 1046,
+   "end_line": 1115,
+   "bytes": 2035,
+   "sha256": "afac1427d68000e7849cbe2924fd856fd11da2730f76cef40d136ae5ed5ab26c"
+  },
+  {
+   "file": "041-countKeys.js",
+   "start_line": 1116,
+   "end_line": 1130,
+   "bytes": 441,
+   "sha256": "cc6d0dc279d1e38c7a7d00450a47c97b437352757fc1f3d5ba034716badced52"
+  },
+  {
+   "file": "042-handleKVStatus.js",
+   "start_line": 1131,
+   "end_line": 1164,
+   "bytes": 1034,
+   "sha256": "8ac32e0cf9454191447cbf012b514d37de9d9a3e179ec6f4e2bb932ed735f1e7"
+  },
+  {
+   "file": "043-QCLogger.js",
+   "start_line": 1165,
+   "end_line": 1241,
+   "bytes": 2337,
+   "sha256": "7254051fa1ef867ef84364f44b5ca06ade67e8123c05cabdbce05a8d46158675"
+  },
+  {
+   "file": "044-worker_default.js",
+   "start_line": 1242,
+   "end_line": 1242,
+   "bytes": 35,
+   "sha256": "cb71acda754f4f17434335fba70ba9644f21d83002edc1a49c7e180a227a5903"
+  },
+  {
+   "file": "045-preamble.js",
+   "start_line": 1243,
+   "end_line": 1247,
+   "bytes": 86,
+   "sha256": "07f058e0046ef9db8799e93d45dbaad382878396ab722113ef5ed71be68f84bc"
+  }
+ ]
+}
