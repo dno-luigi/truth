@@ -4,7 +4,7 @@
  "version_number": 26,
  "version_id": "c19d749a-f84b-45d2-9610-2d3ceb5e48b3",
  "deployed_utc": "2026-11-05T16:11:52.944606Z",
- "compatibility_date": null,
+ "compatibility_date": "2025-11-10",
  "retrieved_utc": "2026-11-05T19:20:28.433148Z",
  "retrieval_method": "GET /accounts/771ee2cc20f09248129114b7535b2cc9/workers/scripts/truth (multipart, part name=\"worker.js\")",
  "account_id": "771ee2cc20f09248129114b7535b2cc9",
@@ -60,5 +60,6 @@
  "sealed_archive": "evidence/sealed/incident-MSB26006196",
  "sealed_archive_digest": "74148457b1defa69caed0f92a59e18d4fb453358153f113bf76ba16dd270e79b",
  "classification": "recovered production artifact - NOT a clean or reproducible source baseline",
- "production_changes_at_capture": "none (read-only retrieval)"
+ "production_changes_at_capture": "none (read-only retrieval)",
+ "compatibility_date_source": "GET /workers/scripts/truth/settings"
 }

@@ -6,7 +6,7 @@
 | Version | v26 |
 | Version id | `c19d749a-f84b-45d2-9610-2d3ceb5e48b3` |
 | Deployed (UTC) | 2026-11-05T16:11:52.944606Z |
-| Compatibility date | None |
+| Compatibility date | 2025-11-10 |
 | Retrieved (UTC) | 2026-11-05T19:20:28.433148Z |
 | Bundle bytes | 38357 |
 | SHA-256 | `582fa128ff3b15d2b65beaeb49b612a06d8d59691fdb22c9f8f0ca9776fc0ce6` |
