@@ -1,0 +1,19 @@
+{
+  "name": "truth",
+  "main": "index.js",
+  "compatibility_date": "2025-11-10",
+  "observability": { "enabled": true },
+  "kv_namespaces": [
+    { "binding": "MASTER_TRUTHS", "id": "904eff3af4c14f06964e4f651cce9573" },
+    { "binding": "PROV_TRUTH", "id": "4a9bfbffb4d440cba86badc508e2045a" }
+  ],
+  "r2_buckets": [{ "binding": "TBACKED", "bucket_name": "ai-nspired" }],
+  "durable_objects": { "bindings": [{ "name": "QC", "class_name": "QCLogger" }] },
+  "services": [
+    { "binding": "AI-PROXY", "service": "ai-proxy" },
+    { "binding": "PROXY", "service": "ai-proxy" },
+    { "binding": "OP", "service": "pi-harness-example" },
+    { "binding": "JUSTICE", "service": "justice" },
+    { "binding": "ORPROXY", "service": "orproxy" }
+  ]
+}
