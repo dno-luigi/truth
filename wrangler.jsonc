@@ -1,28 +1,13 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "truth",
-  "main": "patches/2026-11-12-op-candidate/index.js",
+  "main": "patches/2026-11-12-op-candidate/worker.js",
   "no_bundle": true,
   "compatibility_date": "2025-11-10",
   "observability": { "enabled": true, "head_sampling_rate": 1 },
   "kv_namespaces": [
     { "binding": "MASTER_TRUTHS", "id": "904eff3af4c14f06964e4f651cce9573" },
     { "binding": "PROV_TRUTH", "id": "4a9bfbffb4d440cba86badc508e2045a" }
-    {
-
-"exports": {
-
-"QCLogger": {
-
-"type": "durable-object",
-
-"storage": "sqlite"
-
-}
-
-}
-
-}
   ],
   "r2_buckets": [{ "binding": "TBACKED", "bucket_name": "ai-nspired" }],
   "durable_objects": { "bindings": [{ "name": "QC", "class_name": "QCLogger" }] },
