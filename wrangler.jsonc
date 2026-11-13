@@ -1,21 +1,61 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "truth",
-  "main": "patches/2026-11-12-op-candidate/index.js",
-  "no_bundle": true,
-  "compatibility_date": "2025-11-10",
-  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  // ...
+  "unsafe": {
+    "bindings": [
+      {
+        "name": "AI-PROXY",
+        "type": "service",
+        "service": "ai-proxy",
+        "environment": "production"
+      },
+      {
+        "name": "JUSTICE",
+        "type": "service",
+        "service": "justice",
+        "environment": "production"
+      },
+      {
+        "name": "OP",
+        "type": "service",
+        "service": "pi-harness-example",
+        "environment": "production"
+      },
+      {
+        "name": "ORPROXY",
+        "type": "service",
+        "service": "orproxy",
+        "environment": "production"
+      },
+      {
+        "name": "PROXY",
+        "type": "service",
+        "service": "ai-proxy",
+        "environment": "production"
+      },
+      {
+        "name": "QC",
+        "type": "durable_object_namespace",
+        "class_name": "PiAgent",
+        "script_name": "pi-harness-example",
+        "namespace_id": "6ede77055f3747c39a7e182f8e49811e"
+      }
+    ]
+  },
   "kv_namespaces": [
-    { "binding": "MASTER_TRUTHS", "id": "904eff3af4c14f06964e4f651cce9573" },
-    { "binding": "PROV_TRUTH", "id": "4a9bfbffb4d440cba86badc508e2045a" }
+    {
+      "binding": "MASTER_TRUTHS",
+      "id": "904eff3af4c14f06964e4f651cce9573"
+    },
+    {
+      "binding": "PROV_TRUTH",
+      "id": "4a9bfbffb4d440cba86badc508e2045a"
+    }
   ],
-  "r2_buckets": [{ "binding": "TBACKED", "bucket_name": "ai-nspired" }],
-  "durable_objects": { "bindings": [{ "name": "QC", "class_name": "QCLogger" }] },
-  "services": [
-    { "binding": "AI-PROXY", "service": "ai-proxy" },
-    { "binding": "PROXY", "service": "ai-proxy" },
-    { "binding": "OP", "service": "pi-harness-example" },
-    { "binding": "JUSTICE", "service": "justice" },
-    { "binding": "ORPROXY", "service": "orproxy" }
-  ]
+  "r2_buckets": [
+    {
+      "binding": "TBACKED",
+      "bucket_name": "ai-nspired"
+    }
+  ],
+  // ...
 }
