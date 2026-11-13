@@ -1,4 +1,4 @@
-was{
+{
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "truth",
   "main": "patches/2026-11-12-op-candidate/index.js",
