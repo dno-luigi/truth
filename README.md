@@ -5,8 +5,9 @@
 - `bundle/worker.js` - exact deployed artifact, 38357 bytes, SHA-256 `582fa128ff3b15d2b65beaeb49b612a06d8d59691fdb22c9f8f0ca9776fc0ce6`.
 - Tag `recovered-v26` marks the commit holding that artifact.
 - `src/parts/` - derived navigation split; `node src/assemble.mjs --check` reproduces the bundle exactly.
-- `PROVENANCE.md` / `provenance.json` - version id, deploy time, compatibility date, retrieval
-  method and timestamp, SHA-256, workers_dev flags, binding inventory.
+- `PROVENANCE.md` / `provenance.json` - `current` records the live deployment (version id,
+  artifact sha256, bindings); `baseline_v26` records the 2026-11-05 artifact that ships as
+  `bundle/worker.js`, with its deploy time, retrieval method, SHA-256 and binding inventory.
 
 - `current/index.js` - **the file that is deployed**. A promotion copies a patch here and never
   renames it; `current/README.md` records the patch it came from and its sha256.

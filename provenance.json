@@ -1,65 +1,143 @@
 {
- "component": "truth",
- "cloudflare_script_name": "truth",
- "version_number": 26,
- "version_id": "c19d749a-f84b-45d2-9610-2d3ceb5e48b3",
- "deployed_utc": "2026-11-05T16:11:52.944606Z",
- "compatibility_date": "2025-11-10",
- "retrieved_utc": "2026-11-05T19:20:28.433148Z",
- "retrieval_method": "GET /accounts/771ee2cc20f09248129114b7535b2cc9/workers/scripts/truth (multipart, part name=\"worker.js\")",
- "account_id": "771ee2cc20f09248129114b7535b2cc9",
- "bundle_sha256": "582fa128ff3b15d2b65beaeb49b612a06d8d59691fdb22c9f8f0ca9776fc0ce6",
- "bundle_bytes": 38357,
- "workers_dev": {
-  "enabled": true,
-  "previews_enabled": false
- },
- "bindings": [
-  {
-   "environment": "production",
-   "name": "JUSTICE",
-   "service": "justice",
-   "type": "service"
+  "component": "truth",
+  "cloudflare_script_name": "truth",
+  "account_id": "771ee2cc20f09248129114b7535b2cc9",
+  "current": {
+    "version_id": "5fc78afd-9e44-48a5-b6d3-30488255f047",
+    "deployed_date": "2026-11-12",
+    "deployed_utc": null,
+    "supersedes": "c19d749a-f84b-45d2-9610-2d3ceb5e48b3",
+    "source_patch": "patches/2026-11-12-op-candidate",
+    "deploy_target": "current/index.js",
+    "artifact_sha256": "3cd9b1ea3ce043927e41226df79899f9f14982478be392f4a041c048a68ed267",
+    "artifact_bytes": 51746,
+    "compatibility_date": "2025-11-10",
+    "admin_key": "set on the script (the patch README records adminGated: true); the value is not recorded here",
+    "env_names_read_by_code": [
+      "PROV_TRUTH",
+      "TBACKED",
+      "MASTER_TRUTHS",
+      "JUSTICE",
+      "ADMIN_KEY",
+      "QC",
+      "PROXY",
+      "OP"
+    ],
+    "bindings": [
+      {
+        "name": "AI-PROXY",
+        "service": "ai-proxy",
+        "type": "service"
+      },
+      {
+        "name": "PROXY",
+        "service": "ai-proxy",
+        "type": "service"
+      },
+      {
+        "name": "OP",
+        "service": "pi-harness-example",
+        "type": "service"
+      },
+      {
+        "name": "JUSTICE",
+        "service": "justice",
+        "type": "service"
+      },
+      {
+        "name": "ORPROXY",
+        "service": "orproxy",
+        "type": "service"
+      },
+      {
+        "name": "MASTER_TRUTHS",
+        "namespace_id": "904eff3af4c14f06964e4f651cce9573",
+        "type": "kv_namespace"
+      },
+      {
+        "name": "PROV_TRUTH",
+        "namespace_id": "4a9bfbffb4d440cba86badc508e2045a",
+        "type": "kv_namespace"
+      },
+      {
+        "name": "TBACKED",
+        "bucket_name": "ai-nspired",
+        "type": "r2_bucket"
+      },
+      {
+        "class_name": "QCLogger",
+        "name": "QC",
+        "storage": "sqlite",
+        "type": "durable_object_namespace"
+      }
+    ],
+    "recorded_utc": "2026-11-15",
+    "source_of_record": "patches/2026-11-12-op-candidate/README.md (version id, verified behaviour) and wrangler.jsonc (bindings, deploy target). NOT re-read from the Cloudflare API: no credentials were available when this was written.",
+    "gaps": [
+      "deployed_utc: the patch README gives the date only, so no timestamp is asserted here",
+      "AI-PROXY and ORPROXY are declared but not read by any captured version of the code"
+    ]
   },
-  {
-   "name": "MASTER_TRUTHS",
-   "namespace_id": "904eff3af4c14f06964e4f651cce9573",
-   "type": "kv_namespace"
-  },
-  {
-   "name": "PROV_TRUTH",
-   "namespace_id": "4a9bfbffb4d440cba86badc508e2045a",
-   "type": "kv_namespace"
-  },
-  {
-   "environment": "production",
-   "name": "PROXY",
-   "service": "ai-proxy",
-   "type": "service"
-  },
-  {
-   "class_name": "QCLogger",
-   "name": "QC",
-   "namespace_id": "0a45de46f81b43ac849285d76d117084",
-   "type": "durable_object_namespace"
-  },
-  {
-   "bucket_name": "ai-nspired",
-   "name": "TBACKED",
-   "type": "r2_bucket"
-  },
-  {
-   "name": "TEP",
-   "secret_name": "TRUTH_ENGINE_PROMPT",
-   "store_id": "7073bd5852014f83875874ae3ff0817e",
-   "type": "secrets_store_secret"
+  "baseline_v26": {
+    "version_number": 26,
+    "version_id": "c19d749a-f84b-45d2-9610-2d3ceb5e48b3",
+    "deployed_utc": "2026-11-05T16:11:52.944606Z",
+    "compatibility_date": "2025-11-10",
+    "compatibility_date_source": "GET /workers/scripts/truth/settings",
+    "retrieved_utc": "2026-11-05T19:20:28.433148Z",
+    "retrieval_method": "GET /accounts/771ee2cc20f09248129114b7535b2cc9/workers/scripts/truth (multipart, part name=\"worker.js\")",
+    "bundle_sha256": "582fa128ff3b15d2b65beaeb49b612a06d8d59691fdb22c9f8f0ca9776fc0ce6",
+    "bundle_bytes": 38357,
+    "workers_dev": {
+      "enabled": true,
+      "previews_enabled": false
+    },
+    "bindings": [
+      {
+        "environment": "production",
+        "name": "JUSTICE",
+        "service": "justice",
+        "type": "service"
+      },
+      {
+        "name": "MASTER_TRUTHS",
+        "namespace_id": "904eff3af4c14f06964e4f651cce9573",
+        "type": "kv_namespace"
+      },
+      {
+        "name": "PROV_TRUTH",
+        "namespace_id": "4a9bfbffb4d440cba86badc508e2045a",
+        "type": "kv_namespace"
+      },
+      {
+        "environment": "production",
+        "name": "PROXY",
+        "service": "ai-proxy",
+        "type": "service"
+      },
+      {
+        "class_name": "QCLogger",
+        "name": "QC",
+        "namespace_id": "0a45de46f81b43ac849285d76d117084",
+        "type": "durable_object_namespace"
+      },
+      {
+        "bucket_name": "ai-nspired",
+        "name": "TBACKED",
+        "type": "r2_bucket"
+      },
+      {
+        "name": "TEP",
+        "secret_name": "TRUTH_ENGINE_PROMPT",
+        "store_id": "7073bd5852014f83875874ae3ff0817e",
+        "type": "secrets_store_secret"
+      }
+    ],
+    "version_history": "evidence/versions_truth.json (26 versions archived, latest=26)",
+    "evidence_archive": "evidence/bundles + evidence/manifest.json",
+    "sealed_archive": "evidence/sealed/incident-MSB26006196",
+    "sealed_archive_digest": "74148457b1defa69caed0f92a59e18d4fb453358153f113bf76ba16dd270e79b",
+    "classification": "recovered production artifact - NOT a clean or reproducible source baseline",
+    "production_changes_at_capture": "none (read-only retrieval)"
   }
- ],
- "version_history": "evidence/versions_truth.json (26 versions archived, latest=26)",
- "evidence_archive": "evidence/bundles + evidence/manifest.json",
- "sealed_archive": "evidence/sealed/incident-MSB26006196",
- "sealed_archive_digest": "74148457b1defa69caed0f92a59e18d4fb453358153f113bf76ba16dd270e79b",
- "classification": "recovered production artifact - NOT a clean or reproducible source baseline",
- "production_changes_at_capture": "none (read-only retrieval)",
- "compatibility_date_source": "GET /workers/scripts/truth/settings"
 }
