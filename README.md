@@ -9,3 +9,7 @@
   method and timestamp, SHA-256, workers_dev flags, binding inventory.
 
 Never regenerate `bundle/` from `src/parts/`. The bundle is authoritative; the split derives from it.
+
+- How changes are made and deployed in this repo: see `AGENTS.md`. `main` names
+  `current/index.js`, `patches/` holds every change, and `verify.sh` gates the build.
+  The bundle stays frozen as the record of what shipped, not as the file you edit.
