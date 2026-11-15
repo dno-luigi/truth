@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "truth",
-  "main": "patches/2026-11-12-op-candidate/worker.js",
+  "main": "current/index.js",
   "no_bundle": true,
   "compatibility_date": "2025-11-10",
   "observability": { "enabled": true, "head_sampling_rate": 1 },
