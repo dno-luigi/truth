@@ -439,10 +439,22 @@ async function updateMaster(env, {
 __name(updateMaster, "updateMaster");
 
 async function deleteMaster(env, idOrQuery) {
-  const id = normalizeId(idOrQuery);
-  const key = KV_PREFIX_MASTER + id;
-  await env.MASTER_TRUTHS.delete(key);
-  return { id };
+  const asked = String(idOrQuery || "").trim();
+  const id = normalizeId(asked);
+  const keys = [];
+  for (const candidate of [asked, asked.toLowerCase(), id]) {
+    const key = KV_PREFIX_MASTER + candidate;
+    if (!candidate || candidate === "unknown-query" || keys.includes(key)) continue;
+    keys.push(key);
+  }
+  const deleted = [];
+  for (const key of keys) {
+    const held = await env.MASTER_TRUTHS.get(key);
+    if (held === null) continue;
+    await env.MASTER_TRUTHS.delete(key);
+    deleted.push(key);
+  }
+  return { id: asked || id, deleted, found: deleted.length > 0, tried: keys };
 }
 __name(deleteMaster, "deleteMaster");
 
@@ -601,11 +613,23 @@ async function updateProvisional(env, { idOrQuery, answer, meta }) {
 __name(updateProvisional, "updateProvisional");
 
 async function deleteProvisional(env, idOrQuery) {
-  const id = normalizeId(idOrQuery);
-  const key = KV_PREFIX_PROV + id;
-  await env.PROV_TRUTH.delete(key);
+  const asked = String(idOrQuery || "").trim();
+  const id = normalizeId(asked);
+  const keys = [];
+  for (const candidate of [asked, asked.toLowerCase(), id]) {
+    const key = KV_PREFIX_PROV + candidate;
+    if (!candidate || candidate === "unknown-query" || keys.includes(key)) continue;
+    keys.push(key);
+  }
+  const deleted = [];
+  for (const key of keys) {
+    const held = await env.PROV_TRUTH.get(key);
+    if (held === null) continue;
+    await env.PROV_TRUTH.delete(key);
+    deleted.push(key);
+  }
   await unarchiveProvisional(env, id);
-  return { id };
+  return { id: asked || id, deleted, found: deleted.length > 0, tried: keys };
 }
 __name(deleteProvisional, "deleteProvisional");
 
@@ -1287,14 +1311,21 @@ __name(handleMasterUpdate, "handleMasterUpdate");
 
 async function handleMasterDelete(request, env) {
   const body = await request.json().catch(() => ({}));
-  if (!body.input) {
-    return new Response(JSON.stringify({ error: "input required" }), {
+  const asked = body.input || body.id;
+  if (!asked) {
+    return new Response(JSON.stringify({ error: "input or id required" }), {
       status: 400,
       headers: CORS_HEADERS
     });
   }
-  const { id } = await deleteMaster(env, body.input);
-  await logEvent(env, "master_deleted", { id, layer: "master" });
+  const { id, deleted = [], found, tried = [] } = await deleteMaster(env, asked);
+  if (!found) {
+    return new Response(JSON.stringify({ success: false, error: "not_found", id, tried }), {
+      status: 404,
+      headers: CORS_HEADERS
+    });
+  }
+  await logEvent(env, "master_deleted", { id, layer: "master", keys: deleted });
   if (env.JUSTICE) {
     env.JUSTICE.fetch("/notify/delete", {
       method: "POST",
@@ -1302,7 +1333,7 @@ async function handleMasterDelete(request, env) {
       body: JSON.stringify({ id, layer: "master" })
     }).catch(() => {});
   }
-  return new Response(JSON.stringify({ success: true, id }), {
+  return new Response(JSON.stringify({ success: true, id, deleted }), {
     status: 200,
     headers: CORS_HEADERS
   });
@@ -1373,10 +1404,17 @@ async function handleProvisionalDelete(request, env) {
       headers: CORS_HEADERS
     });
   }
-  const { id } = await deleteProvisional(env, idOrInput);
+  const { id, deleted = [], found, tried = [] } = await deleteProvisional(env, idOrInput);
+  if (!found) {
+    return new Response(JSON.stringify({ success: false, error: "not_found", id, tried }), {
+      status: 404,
+      headers: CORS_HEADERS
+    });
+  }
   await logEvent(env, "provisional_deleted", {
     id,
-    layer: "provisional"
+    layer: "provisional",
+    keys: deleted
   });
   if (env.JUSTICE) {
     env.JUSTICE.fetch("/notify/delete", {
@@ -1385,7 +1423,7 @@ async function handleProvisionalDelete(request, env) {
       body: JSON.stringify({ id, layer: "provisional" })
     }).catch(() => {});
   }
-  return new Response(JSON.stringify({ success: true, id }), {
+  return new Response(JSON.stringify({ success: true, id, deleted }), {
     status: 200,
     headers: CORS_HEADERS
   });
