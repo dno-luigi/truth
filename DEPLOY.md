@@ -69,6 +69,18 @@ Two warnings are expected and should not be "fixed": the `QCLogger` exports noti
 the `exports` block already in the config, and any `unsafe` notice only appears if a binding was
 declared that way. Do not add migrations for `QCLogger`: `exports` already declares its storage.
 
+**`exports['QCLogger'].storage` must be `legacy-kv`.** The namespace was provisioned with
+`legacy-kv` and the storage type cannot be changed after creation, so declaring `sqlite` uploads the
+whole script and *then* fails reconciliation:
+
+```
+✘ [storage_type_mismatch] class 'QCLogger': class 'QCLogger' is declared with storage 'sqlite'
+  but the provisioned namespace uses 'legacy-kv'; storage type cannot be changed after creation.
+```
+
+That error is not a suggestion to change the code — it is the config disagreeing with a namespace
+that already exists. Leave it at `legacy-kv`.
+
 ## After it deploys
 
 ```sh
@@ -88,9 +100,20 @@ secret survived. Then a real resolve — the patch's README records the expected
 
 Rollback: `wrangler deployments list`, then `wrangler rollback --version-id <id>`.
 
-## Not verified here
+## Last known good deploy (verified from the account)
 
-No deploy was performed from this workspace and no Cloudflare credentials were available, so
-account state (resources, `ADMIN_KEY`, current version) comes from the patch README and
-`provenance.json`, not from the API. The config is validated by `wrangler deploy --dry-run` and by
-`sh verify.sh` only.
+Workers Builds completed on **2026-11-16T05:05:04Z** and deployed version **`9eafb0cb`**:
+
+- `/debug/kv-status` → `proxyBound: true`, `adminGated: true`, 35 master, 37 provisional,
+  1150 memory.
+- `POST /api/truth/resolve {"input":"gdk000"}` → `status: ok`, `layer: master`, 26355 characters.
+- `POST /api/truth/master/create` with no `x-admin-key` → `401`.
+
+The two breakages that preceded it, in order, were the entry point naming a file that had been
+renamed (nothing uploaded, `Missing entry-point`) and the `QCLogger` storage declaration disagreeing
+with the provisioned namespace (`storage_type_mismatch`, after upload). Both are covered above.
+
+What is still not verified from here: the Workers Builds settings themselves. Reading them through
+the API needs a token with Workers Builds access, which this workspace's token does not have
+(`/accounts/<id>/builds/workers/truth` returns `401 Invalid token`), so the build command, branch and
+root directory can only be confirmed in the dashboard.

@@ -19,7 +19,8 @@ Two records live here, and only one of them describes what is deployed.
 
 Bindings: `AI-PROXY` and `PROXY` (both `ai-proxy`), `OP` (`pi-harness-example`), `JUSTICE`
 (`justice`), `ORPROXY` (`orproxy`), KV `MASTER_TRUTHS` / `PROV_TRUTH`, R2 `TBACKED`,
-DO `QC` -> class `QCLogger` (sqlite export).
+DO `QC` -> class `QCLogger` (provisioned `legacy-kv`; `wrangler.jsonc` declares
+`legacy-kv` for it because storage type cannot be changed after creation).
 
 The code reads eight env names - `PROV_TRUTH`, `TBACKED`, `MASTER_TRUTHS`, `JUSTICE`, `ADMIN_KEY`,
 `QC`, `PROXY`, `OP`. `AI-PROXY` and `ORPROXY` are declared but read by no captured version;

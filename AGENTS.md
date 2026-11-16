@@ -57,21 +57,38 @@ Consequences worth knowing before touching it:
 - More routes than the bundle: the patch adds `/api/truth/provisional/restore` and
   `/debug/archive-status`.
 - Configuration is `no_bundle: true`, `exports` for the `QCLogger` durable object
-  (sqlite storage), KV `MASTER_TRUTHS` and `PROV_TRUTH`, R2 `TBACKED`, and service
-  bindings to `ai-proxy`, `pi-harness-example`, `justice` and `orproxy`.
+  (**`legacy-kv` storage — permanently**), KV `MASTER_TRUTHS` and `PROV_TRUTH`, R2
+  `TBACKED`, and service bindings to `ai-proxy`, `pi-harness-example`, `justice` and
+  `orproxy`.
 
-## Status: not yet applied
+## Status: applied (2026-11-16)
 
-`wrangler.jsonc` still names `patches/2026-11-12-op-candidate/worker.js`, a file that
-does not exist (it was renamed to `index.js`, then `main` was pointed at the old
-name). **Every push fails at the entry point until that is fixed.** Applying this
-workflow is one commit:
+`main` names `current/index.js`, `current/` is the promoted copy of
+`patches/2026-11-12-op-candidate/`, `verify.sh` checks the bundle, the derived split,
+`current/` against its recorded sha256, the syntax, and every `env.<NAME>` the file
+reads. The build command is `sh verify.sh`; the deploy command is `npx wrangler deploy`.
 
-1. `mkdir current && cp patches/2026-11-12-op-candidate/index.js current/index.js`
-2. write `current/README.md` with the patch name and `sha256sum current/index.js`
-3. set `"main": "current/index.js"` in `wrangler.jsonc`
-4. extend `verify.sh` to check `current/` matches its README and `node --check`s it
-5. set the Workers Builds build command to `sh verify.sh`
+The build was broken twice, for two different reasons, in this order:
 
-That commit deploys the same program that is serving today, so it changes the
-pipeline, not the behaviour.
+1. **Entry point.** `main` named `patches/2026-11-12-op-candidate/worker.js` after
+   that file had been renamed to `index.js`. Every build died before upload:
+   `The entry-point file at "…/worker.js" was not found`. Fixed by pointing `main`
+   at `current/index.js`, a path that never changes.
+2. **Durable Object storage.** The build then uploaded the script and all nine
+   bindings and failed in exports reconciliation:
+
+   ```
+   ✘ [storage_type_mismatch] class 'QCLogger': declared with storage 'sqlite'
+     but the provisioned namespace uses 'legacy-kv'; storage type cannot be changed
+     after creation.
+   ```
+
+   **`exports['QCLogger'].storage` is `legacy-kv` and must stay `legacy-kv`.** The
+   namespace was created that way and the storage type cannot be changed after
+   creation. Declaring `sqlite` — or "fixing" the config to `sqlite` because
+   newer Wrangler mentions it — fails every deploy at the last step, after upload.
+
+The first complete Workers Builds deploy landed 2026-11-16T05:05:04Z as version
+`9eafb0cb`: `/debug/kv-status` reported `proxyBound: true`, `adminGated: true`, and
+`POST /api/truth/master/create` without `x-admin-key` returned `401`. Nothing about
+the program changed; the pipeline did.
